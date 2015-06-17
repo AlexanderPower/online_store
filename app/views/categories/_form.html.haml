@@ -1,9 +1,7 @@
-= simple_form_for(@category) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :name
-    = f.association :parent_category
-
-  .form-actions
-    = f.button :submit
+= simple_form_for @category, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.error_span :name
+  = f.input :parent_category_id
+  = f.error_span :parent_category_id
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn btn-default'
