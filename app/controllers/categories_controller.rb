@@ -5,6 +5,10 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
+    r_c=Category.select { |c| c.parent_category==nil }
+    @json_tree=Category.json_tree(r_c)
+    # @json_tree=[{text: "Root node", children: ["Child node 1", "Child node 2"]}].to_json
+    # @json_tree=[{text: "Root node", children: []}].to_json
   end
 
   # GET /categories/1
@@ -62,13 +66,13 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :parent_category_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :parent_category_id)
+  end
 end
