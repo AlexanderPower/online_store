@@ -18,11 +18,11 @@ class Category < ActiveRecord::Base
   end
 
 
-
   def self.json_tree2(nodes)
     nodes.map do |node|
-      {text: node.name, children: json_tree2(node.child_categories)}
+      {id: node.id, text: node.name, children: json_tree2(node.child_categories)}
     end
   end
+
   private_class_method :json_tree2
 end
