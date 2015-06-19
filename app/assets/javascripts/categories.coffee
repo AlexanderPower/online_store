@@ -8,7 +8,14 @@ $(document).ready ->
       check_callback: (operation, node, parent, position, more) ->
         return false  if operation is "copy_node"
         true
-    plugins: ['dnd', 'contextmenu']
+      themes:
+        responsive: true
+        icons: false
+    dnd:
+      large_drop_target: true
+      large_drag_target: true
+    plugins: ['dnd', 'contextmenu','wholerow']
+
   #  console.log $('#temp_information').data('json-tree')
 
   $("#container").on "move_node.jstree", (e, data) ->
