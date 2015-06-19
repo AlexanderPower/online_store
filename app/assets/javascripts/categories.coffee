@@ -46,6 +46,14 @@ $(document).ready ->
 
   $("#container").on "delete_node.jstree", (e, data) ->
     console.log "delete_node node:#{data.node.id}."
+    for child in data.node.children_d
+      $.ajax({
+        type: "DELETE",
+        url: "/categories/#{child}.json",
+        error: (response) ->
+          alert "error #{response}"
+      })
+
     $.ajax({
       type: "DELETE",
       url: "/categories/#{data.node.id}.json",
