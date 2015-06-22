@@ -13,6 +13,16 @@ class Category < ActiveRecord::Base
     end
   end
 
+  def previous_category
+    return nil if not parent_category or parent_category.child_categories.length==1 or (index = parent_category.child_categories.index self)==0
+    parent_category.child_categories[index-1]
+  end
+
+  def next_category
+    return nil if not parent_category or parent_category.child_categories.length==1
+    parent_category.child_categories[parent_category.child_categories.index(self)+1]
+  end
+
   def self.json_tree(nodes)
     json_tree2(nodes).to_json
   end

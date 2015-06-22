@@ -1,11 +1,14 @@
-= simple_form_for(@item) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :name
-    = f.input :description
-    = f.input :price
-    = f.association :category
-
-  .form-actions
-    = f.button :submit
+= simple_form_for @item, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.error_span :name
+  = f.input :description
+  = f.error_span :description
+  = f.input :price, label: 'Price, $'
+  = f.error_span :price
+  = f.association :category
+  = f.simple_fields_for :photos do |p|
+    = p.input :image, as: :file, input_html: { multiple: 'multiple' }
+    -#= p.input :main
+    -#= p.button :submit, :class => 'btn-primary'
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), items_path, :class => 'btn btn-default'

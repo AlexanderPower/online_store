@@ -14,11 +14,16 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    category=Category.find params[:category_id]
+    @item = category.items.build
+    @item.photos.build
+    # @item.photos.build
+    # @item.photos.build
   end
 
   # GET /items/1/edit
   def edit
+    # @photos=@item.photos
   end
 
   # POST /items
@@ -62,13 +67,13 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name, :description, :price, :category_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :category_id, photos_attributes: [:image, :main])
+  end
 end
