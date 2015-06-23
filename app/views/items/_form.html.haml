@@ -7,8 +7,8 @@
   = f.error_span :price
   = f.association :category
   = f.simple_fields_for :photos do |p|
-    = p.input :image, as: :file, input_html: { multiple: 'multiple' }
-    -#= p.input :main
-    -#= p.button :submit, :class => 'btn-primary'
+    = render 'photo_fields', :f => p
+  .links
+    = link_to_add_association 'add photo', f, :photos
   = f.button :submit, :class => 'btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), items_path, :class => 'btn btn-default'
