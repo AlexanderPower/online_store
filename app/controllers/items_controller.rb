@@ -10,13 +10,14 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @categories=Category.all.pluck :id, :name
   end
 
   # GET /items/new
   def new
     category=Category.find params[:category_id]
     @item = category.items.build
-    @item.photos.build main:true
+    @item.photos.build main: true
     # @item.photos.build
     # @item.photos.build
   end

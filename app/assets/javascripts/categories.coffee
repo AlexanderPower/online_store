@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
+  return if $("#container").empty
   $("#container").jstree
     core:
       data: $('#temp_information').data('json-tree')

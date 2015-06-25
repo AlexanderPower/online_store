@@ -11,7 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require best_in_place
+//= require best_in_place.jquery-ui
 //= require twitter/bootstrap
 //= require cocoon
 //= require turbolinks
