@@ -1,4 +1,8 @@
 .row
+  =link_to @item.category, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-arrow-up
+    ="Back to category #{@item.category.name}"
+.row
   %h1= best_in_place @item, :name
 .row
   %h3 Description:
