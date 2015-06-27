@@ -16,4 +16,4 @@ $(window).load ->
 
 jQuery ->
   $('.best_in_place').best_in_place()
-  console.log 'best_in_place'
+#  console.log 'best_in_place'

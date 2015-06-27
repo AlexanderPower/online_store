@@ -1,11 +1,14 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).ready ->
-  return if $("#container").empty
-  $("#container").jstree
+#$(document).ready ->
+jQuery ->
+  if not $("#jstree-container").length
+    console.log 'empty'
+    return
+  $("#jstree-container").jstree
     core:
-      data: $('#temp_information').data('json-tree')
+      data: $('#temp-information').data('json-tree')
       check_callback: (operation, node, parent, position, more) ->
         return false  if operation is "copy_node"
         true

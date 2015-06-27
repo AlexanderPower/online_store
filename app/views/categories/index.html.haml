@@ -1,29 +1,10 @@
 %link{:href => "//cdnjs.cloudflare.com/ajax/libs/jstree/3.1.1/themes/default/style.min.css", :rel => "stylesheet"}
 %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jstree/3.1.1/jstree.min.js"}
 
-#container
-#temp_information{data: {json_tree: @json_tree}}
-
 - model_class = Category
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:parent_category_id)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= link_to category.id, category_path(category)
-        %td= category.name
-        %td= category.parent_category_id
-        %td=l category.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_category_path(category), :class => 'btn btn-default btn-xs'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), category_path(category), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
-
+#jstree-container
+#temp-information{data: {json_tree: @json_tree}}
+%hr
 = link_to t('.new', :default => t("helpers.links.new")), new_category_path, :class => 'btn btn-primary'
