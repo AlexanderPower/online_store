@@ -18,4 +18,5 @@
 //= require twitter/bootstrap
 //= require cocoon
 //= require turbolinks
+//= require jstree.min
 //= require_tree .

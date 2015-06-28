@@ -3,13 +3,18 @@
     %span.glyphicon.glyphicon-arrow-up
     ="Back to category #{@item.category.name}"
 .row
-  %h1= best_in_place @item, :name
+  .page-header
+    %h1= best_in_place @item, :name
 .row
   %h3 Description:
   .well= best_in_place @item, :description
 .row
+  -#-if user_signed_in
+  -#  %h3 Price, $:
+  -#  .p= best_in_place @item, :price
+  -#-else
   %h3 Price:
-  .p= best_in_place @item, :price
+  .p= number_to_currency @item.price
 .row
   %h3 Category:
   .p= best_in_place @item, :category_id,as: :select, collection: @categories

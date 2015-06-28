@@ -29,7 +29,7 @@ jQuery ->
     else
       $('#jstree-container').jstree 'toggle_node', this
 
-  $("#container").on "move_node.jstree", (e, data) ->
+  $("#jstree-container").on "move_node.jstree", (e, data) ->
     console.log "The node:#{data.node.id}. new parent: #{data.parent}."
     $.ajax({
       type: "PATCH",
@@ -39,7 +39,7 @@ jQuery ->
         alert "error #{response}"
     })
 
-  $("#container").on "rename_node.jstree", (e, data) ->
+  $("#jstree-container").on "rename_node.jstree", (e, data) ->
     console.log "rename_node node:#{data.node.id}. new name: #{data.text}."
     $.ajax({
       type: "PATCH",
@@ -49,20 +49,20 @@ jQuery ->
         alert "error #{response}"
     })
 
-  $("#container").on "create_node.jstree", (e, data) ->
+  $("#jstree-container").on "create_node.jstree", (e, data) ->
     console.log "create_node node:#{data.node.id}. name: #{data.node.text}."
     $.ajax({
       type: "POST",
       url: "/categories.json",
       data: { category: { name: data.node.text, parent_category_id: data.parent } },
       success:(response) ->
-        instance = $('#container').jstree(true)
+        instance = $('#jstree-container').jstree(true)
         instance.set_id(data.node,response.id)
       error: (response) ->
         alert "error #{response}"
     })
 
-  $("#container").on "delete_node.jstree", (e, data) ->
+  $("#jstree-container").on "delete_node.jstree", (e, data) ->
     console.log "delete_node node:#{data.node.id}."
     for child in data.node.children_d
       $.ajax({
