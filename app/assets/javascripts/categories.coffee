@@ -59,6 +59,7 @@ jQuery ->
       success:(response) ->
         instance = $('#jstree-container').jstree(true)
         instance.set_id(data.node,response.id)
+        data.node.a_attr={href:"/categories/#{response.id}"}
       error: (response) ->
         alert "error #{response}"
     })
