@@ -497,13 +497,13 @@
   background-position: 0 0;
 }
 .jstree-default > .jstree-container-ul .jstree-loading > .jstree-ocl {
-  background: image-url("throbber.gif") center center no-repeat;
+  background: url("throbber.gif") center center no-repeat;
 }
 .jstree-default .jstree-file {
-  background: image-url("32px.png") -100px -68px no-repeat;
+  background: url("32px.png") -100px -68px no-repeat;
 }
 .jstree-default .jstree-folder {
-  background: image-url("32px.png") -260px -4px no-repeat;
+  background: url("32px.png") -260px -4px no-repeat;
 }
 .jstree-default > .jstree-container-ul > .jstree-node {
   margin-left: 0;
