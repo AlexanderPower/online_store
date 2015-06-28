@@ -1,20 +1,30 @@
 .row
-  .page-header
-    %h1= best_in_place @category, :name
-.row
   -if @category.parent_category
     =link_to @category.parent_category, class: 'btn btn-default' do
       %span.glyphicon.glyphicon-arrow-up
       =@category.parent_category.name
-    %hr
-    -if @category.previous_category
-      =link_to @category.previous_category, class: 'btn btn-default' do
-        %span.glyphicon.glyphicon-arrow-left
-        =@category.previous_category.name
-    -if @category.next_category
-      =link_to @category.next_category, class: 'btn btn-default' do
-        %span.glyphicon.glyphicon-arrow-right
-        =@category.next_category.name
+  -else
+    =link_to categories_path, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-arrow-up
+      Categories
+  %hr
+  -if @category.previous_category
+    =link_to @category.previous_category, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-arrow-left
+      =@category.previous_category.name
+  -if @category.next_category
+    =link_to @category.next_category, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-arrow-right
+      =@category.next_category.name
+  %hr
+  -@category.child_categories.each do |c|
+    =link_to c, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-arrow-down
+      =c.name
+
+.row
+  .page-header
+    %h1= best_in_place @category, :name
 
 %h3 Items:
 .row

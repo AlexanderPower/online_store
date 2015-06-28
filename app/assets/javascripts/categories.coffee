@@ -24,10 +24,11 @@ jQuery ->
 
 # For clicking and navigate
   $('#jstree-container').delegate 'a', 'click', (e) ->
-    if $('#jstree-container').jstree('is_leaf', this)
-      document.location.href = this
-    else
-      $('#jstree-container').jstree 'toggle_node', this
+    document.location.href = this
+#    if $('#jstree-container').jstree('is_leaf', this)
+#      document.location.href = this
+#    else
+#      $('#jstree-container').jstree 'toggle_node', this
 
   $("#jstree-container").on "move_node.jstree", (e, data) ->
     console.log "The node:#{data.node.id}. new parent: #{data.parent}."

@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
     include Rails.application.routes.url_helpers
   end
 
+  scope :root_categories, -> { where(parent_category: nil) }
+
   has_many :child_categories, class_name: "Category",
            foreign_key: "parent_category_id"
   belongs_to :parent_category, class_name: "Category"
@@ -17,14 +19,20 @@ class Category < ActiveRecord::Base
     end
   end
 
+  def target_categories
+    parent_category ? parent_category.child_categories : Category.root_categories
+  end
+
   def previous_category
-    return nil if not parent_category or parent_category.child_categories.length==1 or (index = parent_category.child_categories.index self)==0
-    parent_category.child_categories[index-1]
+    target_categories=self.target_categories
+    return nil if target_categories.length==1 or (index = target_categories.index self)==0
+    target_categories[index-1]
   end
 
   def next_category
-    return nil if not parent_category or parent_category.child_categories.length==1
-    parent_category.child_categories[parent_category.child_categories.index(self)+1]
+    target_categories=self.target_categories
+    return nil if target_categories.length==1
+    target_categories[target_categories.index(self)+1]
   end
 
   def self.json_tree(nodes)
@@ -34,7 +42,7 @@ class Category < ActiveRecord::Base
 
   def self.json_tree2(nodes)
     nodes.map do |node|
-      {id: node.id, text: node.name,li_attr:nil, a_attr:{href: category_path(node)}, children: json_tree2(node.child_categories)}
+      {id: node.id, text: node.name, li_attr: nil, a_attr: {href: category_path(node)}, children: json_tree2(node.child_categories)}
     end
   end
 
