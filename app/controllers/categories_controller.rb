@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, except:[:index,:show]
 
   # GET /categories
   # GET /categories.json
@@ -19,10 +20,6 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
   end
 
   # POST /categories

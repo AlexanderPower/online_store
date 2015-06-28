@@ -6,6 +6,12 @@ jQuery ->
   if not $("#jstree-container").length
     console.log 'empty'
     return
+
+  plugins=if $('#temp-information').data('user-signed-in')
+    ['dnd', 'contextmenu','wholerow']
+  else
+    ['wholerow']
+
   $("#jstree-container").jstree
     core:
       data: $('#temp-information').data('json-tree')
@@ -18,9 +24,9 @@ jQuery ->
     dnd:
       large_drop_target: true
       large_drag_target: true
-    plugins: ['dnd', 'contextmenu','wholerow']
+    plugins: plugins
 
-  #  console.log $('#temp_information').data('json-tree')
+    #  console.log $('#temp_information').data('json-tree')
 
 # For clicking and navigate
   $('#jstree-container').delegate 'a', 'click', (e) ->
@@ -29,6 +35,8 @@ jQuery ->
 #      document.location.href = this
 #    else
 #      $('#jstree-container').jstree 'toggle_node', this
+
+  return unless $('#temp-information').data('user-signed-in')
 
   $("#jstree-container").on "move_node.jstree", (e, data) ->
     console.log "The node:#{data.node.id}. new parent: #{data.parent}."

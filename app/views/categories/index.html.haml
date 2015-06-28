@@ -5,6 +5,7 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 #jstree-container
-#temp-information{data: {json_tree: @json_tree}}
-%hr
-= link_to t('.new', :default => t("helpers.links.new")), new_category_path, :class => 'btn btn-primary'
+#temp-information{data: {json_tree: @json_tree,user_signed_in:user_signed_in?}}
+-if user_signed_in?
+  %hr
+  = link_to t('.new', :default => t("helpers.links.new")), new_category_path, :class => 'btn btn-primary'
