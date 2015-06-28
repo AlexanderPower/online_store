@@ -5,9 +5,6 @@ ruby '2.1.5'
 gem 'rails', '4.2.1'
 gem 'therubyracer', platforms: :ruby
 
-# DB
-gem 'sqlite3'
-
 # Users
 gem 'devise'
 # gem 'cancancan', '~> 1.10'
@@ -31,7 +28,7 @@ gem 'simple_form'
 gem 'jquery-turbolinks'
 gem 'best_in_place', '~> 3.0.1'
 #gem 'tinymce-rails', '~> 4.1.6'
-gem "cocoon"
+gem 'cocoon'
 
 # Files upload
 gem 'paperclip', '~> 4.2'
@@ -49,6 +46,9 @@ group :test do
 end
 
 group :development, :test do
+  # DB
+  gem 'sqlite3'
+
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
 
