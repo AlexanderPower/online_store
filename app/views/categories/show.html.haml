@@ -16,7 +16,9 @@
     =link_to @category.next_category, class: 'btn btn-default' do
       %span.glyphicon.glyphicon-arrow-right
       =@category.next_category.name
-  %hr
+  -if @category.previous_category or @category.next_category
+    %hr
+
   -@category.child_categories.each do |c|
     =link_to c, class: 'btn btn-default' do
       %span.glyphicon.glyphicon-arrow-down

@@ -8,9 +8,9 @@ jQuery ->
     return
 
   plugins=if $('#temp-information').data('user-signed-in')
-    ['dnd', 'contextmenu','wholerow']
+    ['dnd', 'contextmenu','wholerow','state']
   else
-    ['wholerow']
+    ['wholerow','state']
 
   $("#jstree-container").jstree
     core:

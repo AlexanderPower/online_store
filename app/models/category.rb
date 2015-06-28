@@ -42,7 +42,13 @@ class Category < ActiveRecord::Base
 
   def self.json_tree2(nodes)
     nodes.map do |node|
-      {id: node.id, text: node.name, li_attr: nil, a_attr: {href: category_path(node)}, children: json_tree2(node.child_categories)}
+      {
+          id: node.id,
+          text: node.name,
+          state: {opened:true},
+          a_attr: {href: category_path(node)},
+          children: json_tree2(node.child_categories)
+      }
     end
   end
 
