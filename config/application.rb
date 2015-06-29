@@ -31,7 +31,7 @@ module OnlineStore
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    # config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets', 'jstree', 'themes', 'default')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets', 'jstree', 'themes', 'default')
     # config.assets.paths << Rails.root.join( 'vendor', 'assets' )
     # config.assets.precompile << %w( *.gif *.png )
   end
